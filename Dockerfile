@@ -8,22 +8,21 @@ RUN apt upgrade
 RUN apt install -y systemctl
 RUN apt install -y sudo
 
-
 # Install Certbot
 RUN apt install -y certbot
 
 # Install Ngnix
-RUN apt update
 RUN apt install -y nginx
 
 COPY ./nginx/conf /etc/nginx/conf.d
 
+EXPOSE 80/tcp
+
 RUN sudo systemctl enable nginx
 RUN sudo systemctl start nginx
 
-EXPOSE 80/tcp
-
 RUN mkdir autocertbot
 WORKDIR autocertbot
+COPY ./start.sh ./start.sh
 
 ENTRYPOINT [ "/bin/bash" ]
