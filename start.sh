@@ -1,4 +1,6 @@
 
+# TODO change default.conf file with env ${DOMAIN}
+
 sudo systemctl start nginx  # TODO should be done on start
 mkdir /var/www/certbot      # TODO should be on Dockerfile
 
