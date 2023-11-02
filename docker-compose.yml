@@ -1,17 +1,18 @@
-version: '3'
+version: '3.4'
 
 services:
-  webserver:
+  autocertbot:
     image: nginx:latest
     ports:
       - 80:80
-      - 443:443
     restart: always
     volumes:
       - ./nginx/conf/:/etc/nginx/conf.d/:ro
       - ./certbot/www/:/var/www/certbot/:ro
+    container_name: nginx
   certbot:
     image: certbot/certbot:latest
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
+    container_name: certbot
