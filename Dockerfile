@@ -23,6 +23,6 @@ RUN sudo systemctl start nginx
 
 RUN mkdir autocertbot
 WORKDIR autocertbot
-COPY ./start.sh ./start.sh
+COPY ./start.sh start.sh
 
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT [ "start.sh" ]
