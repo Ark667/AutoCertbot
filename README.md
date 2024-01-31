@@ -16,13 +16,16 @@ docker run -rm -it \
   -e CERT_PASSWORD=certPassword01 \
   -e DOMAIN=dev.mydance.zone \
   -e EMAIL=it@mydance.zone \
-  autocertbot
+  ghcr.io/ark667/autocertbot:main
 ```
 
 
 ### Remove all exited containers
 docker rm $(docker ps -a -f status=exited -f status=exited -q) && docker image prune --all
 
-### Depurar Nginx
+### Remove current image
+docker rmi ghcr.io/ark667/autocertbot:main --force
+
+### Debug Nginx
 systemctl status nginx
 

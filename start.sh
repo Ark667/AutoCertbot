@@ -1,5 +1,7 @@
 
 # TODO change default.conf file with env ${DOMAIN}
+# TODO delete exiting certbot target folder (it will create a new one *-0001)
+# rmdir /etc/letsencrypt/live/${DOMAIN} TODO 
 
 sudo systemctl start nginx  # TODO should be done on start
 mkdir /var/www/certbot      # TODO should be on Dockerfile
