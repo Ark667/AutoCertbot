@@ -24,5 +24,6 @@ RUN sudo systemctl start nginx
 RUN mkdir autocertbot
 WORKDIR autocertbot
 COPY ./start.sh start.sh
+RUN chmod 777 start.sh
 
 ENTRYPOINT [ "start.sh" ]
