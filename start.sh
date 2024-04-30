@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# TODO change default.conf file with env ${DOMAIN}
+# Change default.conf file with env ${DOMAIN}
+sed -i s/DOMAIN/${DOMAIN}/g start.sh
+
 # TODO delete exiting certbot target folder (it will create a new one *-0001)
 # rmdir /etc/letsencrypt/live/${DOMAIN} TODO 
 

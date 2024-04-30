@@ -12,7 +12,7 @@ RUN apt install -y certbot
 
 # Install Ngnix
 RUN apt install -y nginx
-
+ENV WEB_ROOT_PATH=/var/www/certbot
 COPY ./nginx/conf /etc/nginx/conf.d
 
 EXPOSE 80/tcp
