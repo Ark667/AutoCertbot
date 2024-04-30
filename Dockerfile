@@ -1,7 +1,6 @@
 FROM ubuntu:20.04
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update
 RUN apt upgrade

@@ -9,9 +9,10 @@ docker build . -t autocertbot:latest
 ## Launc container
 
 ```bash
-docker run -rm -it \
+docker run --rm -it \
   -p 80:80 \
   -v ${HOME}/.aspnet/https/:/home/autocertbot \
+  -e WEB_ROOT_PATH=/var/www/certbot \
   -e CERT_PATH=/home/autocertbot/aspnetapp.pfx \
   -e CERT_PASSWORD=certPassword01 \
   -e DOMAIN=dev.mydance.zone \
