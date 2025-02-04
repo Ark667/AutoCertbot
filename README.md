@@ -6,7 +6,7 @@
 docker build . -t autocertbot:latest
 ```
 
-## Launc container
+## Launch container
 
 ```bash
 docker run --rm -it \
@@ -14,8 +14,8 @@ docker run --rm -it \
   -v ${HOME}/.aspnet/https/:/home/autocertbot \
   -e CERT_PATH=/home/autocertbot/aspnetapp.pfx \
   -e CERT_PASSWORD=certPassword01 \
-  -e DOMAIN=dev.mydance.zone \
-  -e EMAIL=it@mydance.zone \
+  -e DOMAIN=www.domain.com \
+  -e EMAIL=email@domain.com \
   ghcr.io/ark667/autocertbot:main
 ```
 
