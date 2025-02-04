@@ -17,9 +17,6 @@ COPY ./nginx/conf /etc/nginx/conf.d
 
 EXPOSE 80/tcp
 
-RUN sudo systemctl enable nginx
-RUN sudo systemctl start nginx
-
 RUN mkdir autocertbot
 WORKDIR autocertbot
 COPY start.sh start.sh

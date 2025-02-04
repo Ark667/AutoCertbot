@@ -1,13 +1,15 @@
 #!/bin/bash
 
 # Change default.conf file with env ${DOMAIN}
-sed -i s/DOMAIN/${DOMAIN}/g start.sh
+sed -i s/DOMAIN/${DOMAIN}/g nginx/conf/default.conf
 
-# TODO delete exiting certbot target folder (it will create a new one *-0001)
-# rmdir /etc/letsencrypt/live/${DOMAIN} TODO 
+# Delete exiting certbot target folder (it will create a new one *-0001)
+rmdir /etc/letsencrypt/live/${DOMAIN}
 
-sudo systemctl start nginx  # TODO should be done on start
+# Start Nginx service
 mkdir ${WEB_ROOT_PATH}
+sudo systemctl enable nginx
+sudo systemctl start nginx
 
 # Launch challenge for domain, Nginx must be running with Certbot configuration to resolve
 certbot certonly -n --webroot --webroot-path ${WEB_ROOT_PATH} -d ${DOMAIN} --agree-tos --email ${EMAIL}
