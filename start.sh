@@ -21,11 +21,15 @@ fi
 if [ ! -d "${WEB_ROOT_PATH}" ]; then
     mkdir -p "${WEB_ROOT_PATH}"
 fi
-sudo systemctl enable nginx
-sudo systemctl start nginx
+
+# Start Nginx service
+nginx
 
 # Launch challenge for domain, Nginx must be running with Certbot configuration to resolve
 certbot certonly -n --webroot --webroot-path ${WEB_ROOT_PATH} -d ${DOMAIN} --agree-tos --email ${EMAIL}
+
+# Stop Nginx service
+nginx -s stop
 
 if [ -f /etc/letsencrypt/live/${DOMAIN}/privkey.pem ] && [ -f /etc/letsencrypt/live/${DOMAIN}/cert.pem ]; then
 

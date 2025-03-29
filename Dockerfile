@@ -8,7 +8,7 @@ RUN apk update && apk upgrade && \
 ENV WEB_ROOT_PATH=/var/www/certbot
 
 # Copiar las configuraciones de nginx
-COPY ./nginx/conf /etc/nginx/conf.d
+COPY ./nginx /etc/nginx
 
 EXPOSE 80
 
