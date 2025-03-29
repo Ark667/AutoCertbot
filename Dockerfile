@@ -1,25 +1,19 @@
-FROM ubuntu:20.04
+FROM alpine:3.16
 
-ENV DEBIAN_FRONTEND=noninteractive
+# Actualizar el sistema e instalar dependencias
+RUN apk update && apk upgrade && \
+    apk add --no-cache sudo nginx certbot
 
-RUN apt update
-RUN apt upgrade -y
-RUN apt install -y systemctl
-RUN apt install -y sudo
-
-# Install Certbot
-RUN apt install -y certbot
-
-# Install Ngnix
-RUN apt install -y nginx
+# Configuración del directorio raíz para webs
 ENV WEB_ROOT_PATH=/var/www/certbot
+
+# Copiar las configuraciones de nginx
 COPY ./nginx/conf /etc/nginx/conf.d
 
-EXPOSE 80/tcp
+EXPOSE 80
 
-RUN mkdir autocertbot
-WORKDIR autocertbot
+WORKDIR /autocertbot
 COPY start.sh start.sh
 RUN chmod 777 start.sh
 
-ENTRYPOINT [ "./start.sh" ]
+ENTRYPOINT ["./start.sh"]
