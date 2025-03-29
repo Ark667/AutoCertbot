@@ -1,8 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
 # Check env vars with value
 for VAR in DOMAIN WEB_ROOT_PATH EMAIL CERT_PATH CERT_PASSWORD; do
-    if [ -z "${!VAR}" ]; then
+    eval "value=\$$VAR"
+    if [ -z "$value" ]; then
         echo "Error: La variable de entorno ${VAR} no está definida."
         exit 1
     fi

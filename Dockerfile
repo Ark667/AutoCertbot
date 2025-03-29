@@ -2,7 +2,7 @@ FROM alpine:3.16
 
 # Actualizar el sistema e instalar dependencias
 RUN apk update && apk upgrade && \
-    apk add --no-cache sudo nginx certbot
+    apk add --no-cache sudo nginx certbot sed openssl
 
 # Configuración del directorio raíz para webs
 ENV WEB_ROOT_PATH=/var/www/certbot
