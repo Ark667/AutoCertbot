@@ -10,7 +10,7 @@ for VAR in DOMAIN WEB_ROOT_PATH EMAIL CERT_PATH CERT_PASSWORD; do
 done
 
 # Change default.conf file with env ${DOMAIN}
-sed -i "s/DOMAIN/${DOMAIN}/g" /etc/nginx/conf.d/default.conf
+sed -i "s/DOMAIN/${DOMAIN}/g" /etc/nginx/nginx.conf
 
 # Delete existing certbot target folder (it will create a new one *-0001)
 if [ -d "/etc/letsencrypt/live/${DOMAIN}" ]; then
@@ -24,6 +24,10 @@ fi
 
 # Start Nginx service
 nginx
+if [ $? -ne 0 ]; then
+    echo "Error: Nginx did not launch properly. Exiting..."
+    exit 1
+fi
 
 # Launch challenge for domain, Nginx must be running with Certbot configuration to resolve
 certbot certonly -n --webroot --webroot-path ${WEB_ROOT_PATH} -d ${DOMAIN} --agree-tos --email ${EMAIL}
