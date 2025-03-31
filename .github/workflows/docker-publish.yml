@@ -47,6 +47,7 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: latest
 
       # Build and push Docker image with Buildx for multiple platforms
       - name: Build and push Docker image
